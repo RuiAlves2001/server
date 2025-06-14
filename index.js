@@ -1,5 +1,5 @@
-// server.js
 import http from 'http';
+import https from 'https';
 
 const PORT = process.env.PORT || 3000;
 const FCM_SERVER_KEY = process.env.FCM_SERVER_KEY;
@@ -24,7 +24,7 @@ const sendNotification = (token, title, body) => {
       }
     };
 
-    const req = http.request(options, res => {
+    const req = https.request(options, res => { // Usar HTTPS aqui
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
